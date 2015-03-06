@@ -5,7 +5,7 @@ module BswTech
     class KeyFetcher
       def fetch_key(key_server, key_id)
         parsed = URI.parse key_server
-        url_with_port = parsed.scheme ? key_server : "http://#{key_server}:11371"
+        url_with_port = parsed.scheme ? key_server : "http://#{key_server}"
         full_url = "#{url_with_port}/pks/lookup?options=mr&op=get&search=0x#{URI.escape key_id}"
         begin
           open(full_url) do |f|
