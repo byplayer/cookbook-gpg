@@ -13,8 +13,8 @@ module BswTech
             match = /(-----BEGIN PGP PUBLIC KEY BLOCK-----.*-----END PGP PUBLIC KEY BLOCK-----)/m.match raw
             match[0]
           end
-        rescue OpenURI::HTTPError
-          raise "Contacted key server OK, but key ID '#{key_id}' was not found"
+        rescue OpenURI::HTTPError => e
+          raise "Contacted key server OK, but key ID '#{key_id}' was not found: #{e}"
         rescue SocketError => e
           raise "Unable to contact key server '#{full_url}', details: #{e}"
         end
